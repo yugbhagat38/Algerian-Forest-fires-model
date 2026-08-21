@@ -5,7 +5,7 @@ import pandas as pd
 
 ## Import ridge regressor and standard scaler pickle
 xgb_model=pickle.load(open('models/xgb.pkl','rb'))
-standard_scaler=pickle.load(open('models/scaler.pkl','rb'))
+#standard_scaler=pickle.load(open('models/scaler.pkl','rb'))
 
 
 
