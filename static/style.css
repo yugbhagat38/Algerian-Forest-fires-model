@@ -1,0 +1,695 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+body {
+    font-family: Arial, sans-serif;
+    background: #101714;
+    color: #f1f3ef;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+
+/* Main container */
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* Heading */
+
+.title {
+    text-align: center;
+    font-size: 42px;
+    margin-bottom: 8px;
+    letter-spacing: -1px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #9daaa2;
+    font-size: 16px;
+    margin-bottom: 35px;
+}
+
+
+/* Form */
+
+.prediction-form {
+    background: #18211d;
+    border: 1px solid #2b3932;
+    border-radius: 18px;
+    padding: 35px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px 22px;
+}
+
+
+/* Labels */
+
+.prediction-form label {
+    font-size: 14px;
+    color: #c8d0ca;
+    font-weight: 600;
+    margin-bottom: -10px;
+}
+
+
+/* Inputs */
+
+.prediction-form input,
+.prediction-form select {
+    width: 100%;
+    padding: 13px 14px;
+
+    background: #101714;
+    color: #f1f3ef;
+
+    border: 1px solid #35443b;
+    border-radius: 9px;
+
+    font-size: 15px;
+
+    outline: none;
+
+    transition: 0.2s;
+}
+
+
+/* Input focus */
+
+.prediction-form input:focus,
+.prediction-form select:focus {
+    border-color: #e87932;
+    box-shadow: 0 0 0 3px rgba(232, 121, 50, 0.12);
+}
+
+
+/* Dropdown */
+
+.prediction-form select {
+    cursor: pointer;
+}
+
+
+/* Prediction button */
+
+.predict-button {
+    grid-column: 1 / -1;
+
+    margin-top: 10px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #e87932;
+    color: white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+
+.predict-button:hover {
+    background: #f08a47;
+    transform: translateY(-1px);
+}
+
+
+.predict-button:active {
+    transform: translateY(0);
+}
+
+
+/* Result */
+
+.result-card {
+    max-width: 700px;
+    margin: 30px auto 0;
+
+    background: #18211d;
+
+    border: 1px solid #2b3932;
+    border-radius: 18px;
+
+    padding: 35px;
+
+    text-align: center;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+}
+
+
+.result-label {
+    color: #9daaa2;
+    font-size: 13px;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+
+.result-value {
+    font-size: 72px;
+    margin: 12px 0;
+
+    color: #f08a47;
+}
+
+
+.danger-level {
+    font-size: 18px;
+    color: #c8d0ca;
+}
+
+
+.danger-level strong {
+    color: #f08a47;
+}
+
+
+/* Error */
+
+.error-message {
+    max-width: 700px;
+    margin: 25px auto 0;
+
+    padding: 15px 20px;
+
+    background: #351c19;
+    border: 1px solid #71362d;
+
+    border-radius: 10px;
+
+    color: #ffb4a8;
+
+    text-align: center;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    body {
+        padding: 25px 15px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .prediction-form {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+
+    .predict-button {
+        grid-column: auto;
+    }
+
+    .result-value {
+        font-size: 56px;
+    }
+
+}
+
+
+/* ========================================= */
+/* LANDING PAGE */
+/* ========================================= */
+
+.landing-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    min-height: 90vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+}
+
+
+/* Eyebrow */
+
+.landing-eyebrow {
+    color: #e87932;
+
+    font-size: 13px;
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 18px;
+}
+
+
+/* Main title */
+
+.landing-title {
+    font-size: 64px;
+
+    line-height: 1.05;
+
+    letter-spacing: -2px;
+
+    margin-bottom: 22px;
+}
+
+
+.landing-title span {
+    color: #e87932;
+
+    display: block;
+}
+
+
+/* Description */
+
+.landing-description {
+    max-width: 650px;
+
+    color: #9daaa2;
+
+    font-size: 17px;
+
+    line-height: 1.7;
+
+    margin-bottom: 45px;
+}
+
+
+/* Main card */
+
+.landing-card {
+    width: 100%;
+    max-width: 650px;
+
+    background: #18211d;
+
+    border: 1px solid #2b3932;
+
+    border-radius: 20px;
+
+    padding: 40px;
+
+    box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.3);
+
+    margin-bottom: 30px;
+}
+
+
+.landing-icon {
+    font-size: 45px;
+
+    margin-bottom: 15px;
+}
+
+
+.landing-card h2 {
+    font-size: 27px;
+
+    margin-bottom: 12px;
+}
+
+
+.landing-card p {
+    color: #9daaa2;
+
+    line-height: 1.6;
+
+    margin-bottom: 25px;
+}
+
+
+/* Predict button */
+
+.predict-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 14px 26px;
+
+    border-radius: 10px;
+
+    background: #e87932;
+
+    color: white;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+
+.predict-link:hover {
+    background: #f08a47;
+
+    transform: translateY(-2px);
+}
+
+
+.predict-link span {
+    font-size: 20px;
+}
+
+
+/* Feature cards */
+
+.landing-features {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+
+.feature {
+    background: #18211d;
+
+    border: 1px solid #2b3932;
+
+    border-radius: 14px;
+
+    padding: 22px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 15px;
+
+    text-align: left;
+}
+
+
+.feature > span {
+    font-size: 25px;
+}
+
+
+.feature h3 {
+    font-size: 15px;
+
+    margin-bottom: 6px;
+}
+
+
+.feature p {
+    color: #7f8d84;
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* Footer */
+
+.landing-footer {
+    margin-top: 35px;
+
+    color: #59665e;
+
+    font-size: 12px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 700px) {
+
+    .landing-container {
+        padding: 30px 10px;
+    }
+
+
+    .landing-title {
+        font-size: 43px;
+    }
+
+
+    .landing-description {
+        font-size: 15px;
+    }
+
+
+    .landing-card {
+        padding: 30px 22px;
+    }
+
+
+    .landing-features {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+.back-home {
+    display: inline-block;
+
+    color: #9daaa2;
+
+    text-decoration: none;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+
+    transition: 0.2s;
+}
+
+
+.back-home:hover {
+    color: #e87932;
+}
+
+
+/* ========================================= */
+/* FWI DANGER SCALE */
+/* ========================================= */
+
+.fwi-scale-container {
+    margin-top: 35px;
+    width: 100%;
+}
+
+.scale-title {
+    font-size: 14px;
+    font-weight: bold;
+    color: #c8d0ca;
+    margin-bottom: 18px;
+}
+
+
+/* Wrapper */
+
+.scale-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 42px;
+}
+
+
+/* ========================================= */
+/* COLORED BAR */
+/* ========================================= */
+
+.fwi-scale {
+    width: 100%;
+    height: 18px;
+
+    display: flex;
+
+    overflow: hidden;
+
+    border-radius: 12px;
+}
+
+
+/*
+    The widths correspond to the actual FWI
+    thresholds from 0 to 50.
+
+    0 → 5.2       = 10.4%
+    5.2 → 11.2    = 12%
+    11.2 → 21.3   = 20.2%
+    21.3 → 38     = 33.4%
+    38 → 50       = 24%
+
+    Extreme (50+) is represented by the
+    final red endpoint.
+*/
+
+
+.very-low {
+    width: 10%;
+    background: #3d8b63;
+}
+
+.low {
+    width: 12%;
+    background: #7fa65a;
+}
+
+.moderate {
+    width: 20%;
+    background: #c5a84b;
+}
+
+.high {
+    width: 33%;
+    background: #b89535;
+}
+
+.very-high {
+    width: 23%;
+    background: #d46f32;
+}
+
+.extreme {
+    /*
+        50+ has no upper numerical limit,
+        so make it a small endpoint.
+    */
+    width: 2%;
+    background: #a83232
+}
+
+
+/* ========================================= */
+/* MARKER */
+/* ========================================= */
+
+.scale-marker {
+    position: absolute;
+
+    top: 0;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    transition: left 0.4s ease;
+}
+
+
+.marker-value {
+    background: #f1f3ef;
+
+    color: #101714;
+
+    padding: 6px 10px;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+
+    margin-bottom: 4px;
+}
+
+
+.marker-dot {
+    width: 16px;
+    height: 16px;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    border: 4px solid #e87932;
+
+    box-shadow:
+        0 0 12px rgba(232, 121, 50, 0.7);
+}
+
+
+/* ========================================= */
+/* THRESHOLD NUMBERS */
+/* ========================================= */
+
+.scale-values {
+    position: relative;
+
+    height: 30px;
+
+    width: 100%;
+
+    margin-top: 8px;
+}
+
+
+.scale-values span {
+    position: absolute;
+
+    transform: translateX(-50%);
+
+    color: #8d9991;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+}
+
+
+/* Fix first and last labels */
+
+.scale-values span:first-child {
+    transform: translateX(0);
+}
+
+.scale-values span:last-child {
+    transform: translateX(-100%);
+}
+
+
+/* ========================================= */
+/* NOTE */
+/* ========================================= */
+
+.scale-note {
+    margin-top: 12px;
+
+    font-size: 12px;
+
+    color: #7f8d84;
+
+    text-align: center;
+}

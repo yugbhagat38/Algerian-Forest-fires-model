@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Algerian Forest Fire Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <a
+            href="{{ url_for('index') }}"
+            class="back-home"
+        >
+            ← Home
+        </a>
+
+        <h1 class="title">
+            🔥 FWI Prediction
+        </h1>
+
+        <p class="subtitle">
+            Algerian Forest Fire Weather Index
+        </p>
+
+
+        <!-- Prediction Form -->
+
+        <form
+            action="{{ url_for('predict_datapoint') }}"
+            method="post"
+            class="prediction-form"
+        >
+
+
+            <!-- Region -->
+
+            <label for="Region">
+                Region
+            </label>
+
+            <select
+                name="Region"
+                id="Region"
+                required
+            >
+
+                <option value="">
+                    Select Region
+                </option>
+
+                <option value="0">
+                    Bejaia
+                </option>
+
+                <option value="1">
+                    Sidi-Bel Abbes
+                </option>
+
+            </select>
+
+
+            <!-- Temperature -->
+
+            <label for="Temperature">
+                Temperature
+            </label>
+
+            <input
+                type="number"
+                id="Temperature"
+                name="Temperature"
+                step="0.1"
+                placeholder="Temperature (°C)"
+                required
+            >
+
+
+            <!-- Relative Humidity -->
+
+            <label for="RH">
+                Relative Humidity
+            </label>
+
+            <input
+                type="number"
+                id="RH"
+                name="RH"
+                step="0.1"
+                placeholder="Relative Humidity (%)"
+                required
+            >
+
+
+            <!-- Wind Speed -->
+
+            <label for="Ws">
+                Wind Speed
+            </label>
+
+            <input
+                type="number"
+                id="Ws"
+                name="Ws"
+                step="0.1"
+                placeholder="Wind Speed (km/h)"
+                required
+            >
+
+
+            <!-- Rainfall -->
+
+            <label for="Rain">
+                Rainfall
+            </label>
+
+            <input
+                type="number"
+                id="Rain"
+                name="Rain"
+                step="0.1"
+                placeholder="Rainfall (mm)"
+                required
+            >
+
+
+            <!-- FFMC -->
+
+            <label for="FFMC">
+                FFMC
+            </label>
+
+            <input
+                type="number"
+                id="FFMC"
+                name="FFMC"
+                step="0.1"
+                placeholder="FFMC"
+                required
+            >
+
+
+            <!-- DMC -->
+
+            <label for="DMC">
+                DMC
+            </label>
+
+            <input
+                type="number"
+                id="DMC"
+                name="DMC"
+                step="0.1"
+                placeholder="DMC"
+                required
+            >
+
+
+            <!-- ISI -->
+
+            <label for="ISI">
+                ISI
+            </label>
+
+            <input
+                type="number"
+                id="ISI"
+                name="ISI"
+                step="0.1"
+                placeholder="ISI"
+                required
+            >
+
+
+            <!-- Submit -->
+
+            <button
+                type="submit"
+                class="predict-button"
+            >
+                🔥 Predict FWI
+            </button>
+
+
+        </form>
+
+
+        <!-- Prediction Result -->
+
+       {% if results %}
+
+<div class="result-card">
+
+    <p class="result-label">
+        PREDICTED FIRE WEATHER INDEX
+    </p>
+
+    <h2 class="result-value">
+        {{ results }}
+    </h2>
+
+    <p class="danger-level">
+        Fire Danger Level:
+        <strong>{{ danger }}</strong>
+    </p>
+
+
+    <!-- FWI SCALE -->
+
+    <div class="fwi-scale-container">
+
+    <p class="scale-title">
+        FWI Danger Scale
+    </p>
+
+    <div class="scale-wrapper">
+
+        <!-- Colored bar -->
+
+        <div class="fwi-scale">
+
+            <div class="scale-segment very-low"></div>
+
+            <div class="scale-segment low"></div>
+
+            <div class="scale-segment moderate"></div>
+
+            <div class="scale-segment high"></div>
+
+            <div class="scale-segment very-high"></div>
+
+            <div class="scale-segment extreme"></div>
+
+        </div>
+
+
+        <!-- Prediction marker -->
+
+        <div
+            class="scale-marker"
+            id="scaleMarker"
+            data-fwi="{{ results }}"
+
+        >
+
+            <div class="marker-value">
+                {{ results }}
+            </div>
+
+            <div class="marker-dot"></div>
+
+        </div>
+
+
+        <!-- Threshold numbers -->
+
+        <div class="scale-values">
+
+            <span style="left: 0%;">0</span>
+
+            <span style="left: 10%;">5.2</span>
+
+            <span style="left: 22%;">11.2</span>
+
+            <span style="left: 42%;">21.3</span>
+
+            <span style="left: 75%;">38</span>
+
+            <span style="left: 98%;">50</span>
+
+        </div>
+
+    </div>
+
+
+    <p class="scale-note">
+        Higher FWI values indicate more severe fire-weather conditions.
+    </p>
+
+</div>
+
+{% endif %}
+
+        <!-- Error -->
+
+        {% if error %}
+
+        <div class="error-message">
+
+            ⚠️ {{ error }}
+
+        </div>
+
+        {% endif %}
+
+
+    </div>
+
+<script>
+
+    const marker = document.getElementById('scaleMarker');
+
+    if (marker) {
+
+        const fwi = parseFloat(marker.dataset.fwi);
+
+        if (!isNaN(fwi)) {
+
+            let percentage = (fwi / 50) * 100;
+
+            if (percentage < 0) {
+                percentage = 0;
+            }
+
+            if (percentage > 100) {
+                percentage = 100;
+            }
+
+            marker.style.left = percentage + "%";
+        }
+    }
+
+</script>
+
+</body>
+
+</html>

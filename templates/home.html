@@ -1,43 +1,126 @@
-<html>
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Algerian Forest Fire Analyzer</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+
+</head>
 
 <body>
 
-    
-  <div class="login">
-    <h1>FWI Prediction</h1>
+    <div class="landing-container">
 
-    <!--Main INput For Receiving Query to our ML -->
+        <p class="landing-eyebrow">
+            ALGERIAN FOREST FIRE ANALYZER
+        </p>
 
-    <form action="{{ url_for('predict_datapoint') }}" method="post">
+        <h1 class="landing-title">
+            Understanding
+            <span>Fire Weather</span>
+        </h1>
 
-        <input type="text" name="Temperature" placeholder="Temperature" required="required" /><br>
+        <p class="landing-description">
+            Predict the Fire Weather Index using
+            environmental and fire-weather conditions
+            from the Algerian forest fire dataset.
+        </p>
 
-        <input type="text" name="RH" placeholder="RH" required="required" /><br>
 
-        <input type="text" name="Ws" placeholder="Ws" required="required" /><br>
+        <div class="landing-card">
 
-        <input type="text" name="Rain" placeholder="Rain" required="required" /><br>
+            <div class="landing-icon">
+                🔥
+            </div>
 
-        <input type="text" name="FFMC" placeholder="FFMC" required="required" /><br>
+            <h2>
+                Predict Fire Weather Index
+            </h2>
 
-        <input type="text" name="DMC" placeholder="DMC" required="required" /><br>
+            <p>
+                Enter temperature, humidity, wind,
+                rainfall and fire-weather indicators
+                to generate an FWI prediction.
+            </p>
 
-        <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
+            <a
+                href="{{ url_for('predict_datapoint') }}"
+                class="predict-link"
+            >
+                Predict FWI
+                <span>→</span>
+            </a>
 
-        <input type="text" name="Classes" placeholder="Classes" required="required" /><br>
+        </div>
 
-        <input type="text" name="Region" placeholder="Region" required="required" /><br><br>
 
-        
-        <button type="submit" class="btn btn-primary btn-block btn-large">
-            Predict
-        </button>
+        <div class="landing-features">
 
-    </form>
+            <div class="feature">
 
-    <h2>
-        THE FWI prediction is {{ result }}
-    </h2>
+                <span>🌡️</span>
+
+                <div>
+                    <h3>Environmental Conditions</h3>
+
+                    <p>
+                        Temperature, humidity,
+                        wind and rainfall
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <span>🔥</span>
+
+                <div>
+                    <h3>Fire Weather Index</h3>
+
+                    <p>
+                        Machine-learning based
+                        FWI prediction
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="feature">
+
+                <span>📍</span>
+
+                <div>
+                    <h3>Algerian Regions</h3>
+
+                    <p>
+                        Bejaia & Sidi-Bel Abbes
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <footer class="landing-footer">
+            Built with Flask & XGBoost
+        </footer>
+
+    </div>
 
 </body>
+
 </html>
